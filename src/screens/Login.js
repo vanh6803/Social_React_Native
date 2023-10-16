@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Images} from '../assets/images/index';
 import InputAuth from '../components/InputAuth';
 import ButtonAuth from '../components/buttonAuth';
+import {sizes} from '../constants/sizes';
 
 const Login = () => {
   const navigation = useNavigation();

@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {sizes} from '../constants/sizes';
 import {Images} from './../assets/images/index';
 import PagerView from 'react-native-pager-view';
+import ItemPosts from '../components/ItemPosts';
 
 const Home = () => {
   const pageRef = useRef(null);
@@ -45,13 +46,13 @@ const Home = () => {
       navigation.setOptions({
         tabBarVisible: false,
       });
-    } else if (offsetY < previousOffsetY) {
+    } else if (offsetY < previousOffsetY || offsetY < 10) {
       // `offsetY` đang giảm, hiển thị bottom tab
       navigation.setOptions({
         tabBarVisible: true,
       });
     }
-
+    console.log(previousOffsetY);
     // Lưu giá trị `offsetY` hiện tại cho lần so sánh tiếp theo
     previousOffsetY = offsetY;
   };
@@ -66,71 +67,7 @@ const Home = () => {
         onScroll={handleScroll}
         keyExtractor={item => item._id}
         renderItem={({item}) => {
-          return (
-            <View
-              className="bg-white rounded-md"
-              style={{
-                width: sizes.defaultWidth,
-                marginBottom: sizes.defaultMargin,
-              }}>
-              <View className="flex-row items-center">
-                {item.user_id.avatar ? (
-                  <Image
-                    className="w-10 h-10 rounded-full m-2"
-                    source={{uri: item.user_id.avatar}}
-                  />
-                ) : (
-                  <Image
-                    className="w-10 h-10 rounded-full m-2"
-                    source={Images.user_default}
-                  />
-                )}
-                <Text className="text-base text-black font-bold">
-                  {item.user_id.name}
-                </Text>
-              </View>
-              {item.content && <Text>{item.content}</Text>}
-              <PagerView
-                ref={pageRef}
-                style={{width: sizes.defaultWidth, height: sizes.defaultWidth}}
-                onPageSelected={e => {
-                  setCurrentPage(e.nativeEvent.position);
-                }}>
-                {item.image.map((image, index) => {
-                  return (
-                    <Image
-                      key={index}
-                      source={{uri: image}}
-                      style={{
-                        width: '100%',
-                        aspectRatio: 2,
-                        backgroundColor: 'lightgray',
-                        resizeMode: 'cover',
-                      }}
-                    />
-                  );
-                })}
-              </PagerView>
-              <View
-                className="flex-row self-center bottom-3"
-                style={{position: 'absolute'}}>
-                {item.image.length > 1
-                  ? item.image.map((_, index) => {
-                      return (
-                        <View
-                          key={index}
-                          className={` w-2 h-2 mx-0.5 rounded-full ${
-                            currentPage === index
-                              ? 'bg-yellow-400'
-                              : 'bg-gray-700'
-                          } ${currentPage === index ? 'w-5' : 'w-2'}`}
-                        />
-                      );
-                    })
-                  : null}
-              </View>
-            </View>
-          );
+          return <ItemPosts item={item} />;
         }}
       />
     </View>

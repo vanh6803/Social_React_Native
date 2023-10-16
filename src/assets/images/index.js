@@ -9,4 +9,5 @@ export const Images = {
   google: require('./google.png'),
   instagram: require('./instagram.png'),
   user_default: require('./user_default.jpg'),
+  More: require('./More.png'),
 };
