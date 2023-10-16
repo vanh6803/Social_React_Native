@@ -6,9 +6,7 @@ import {
   Keyboard,
   Image,
   StyleSheet,
-  TextInput,
   ScrollView,
-  ToastAndroid,
 } from 'react-native';
 import React, {useLayoutEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -28,9 +26,9 @@ const Login = () => {
     console.log(text);
   };
 
-  const nextScreen=(nameScreen)=>{
-    navigation.navigate(nameScreen)
-  }
+  const nextScreen = nameScreen => {
+    navigation.navigate(nameScreen);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -60,7 +58,7 @@ const Login = () => {
             <Text
               className="text-red-500 text-base mt-1 self-end mr-2"
               style={styles.fontText}>
-              Forget Password?
+              Forgot password?
             </Text>
           </View>
 
@@ -68,17 +66,13 @@ const Login = () => {
             <ButtonAuth
               title="Login"
               onPressed={() => {
-                nextScreen('bottomNav')
+                nextScreen('bottomNav');
               }}
             />
-
-            <View className="flex-row justify-center mt-2">
-              <Text className="text-[#c4c4c4] mr-1 text-base">
-                Don`t have account?
-              </Text>
-              <TouchableOpacity onPress={()=>nextScreen('register')} >
-                <Text className="text-white text-base ">Create Now</Text>
-              </TouchableOpacity>
+            <View className="flex-row justify-center items-center my-2">
+              <View className="bg-white h-[1px] w-[30%] " />
+              <Text className="text-white text-base p-2">Or continue</Text>
+              <View className="bg-white h-[1px] w-[30%]" />
             </View>
             <ButtonAuth
               title="Login with google"
@@ -89,6 +83,14 @@ const Login = () => {
               btnStyle={styles.btnLoginGG}
               textStyle={styles.btnText}
             />
+          </View>
+          <View className="flex-row justify-center mt-2 ">
+            <Text className="text-[#c4c4c4] mr-1 text-base">
+              Don`t have account?
+            </Text>
+            <TouchableOpacity onPress={() => nextScreen('register')}>
+              <Text className="text-white text-base ">Create Now</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>

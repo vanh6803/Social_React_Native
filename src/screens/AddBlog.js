@@ -1,11 +1,14 @@
-import React from 'react';
-import {View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
 const AddBlog = () => {
-    return (
-        <View>
-            
-        </View>
-    );
+  return (
+    <View>
+      <Text>AddBlog</Text>
+    </View>
+  )
 }
-export default AddBlog;
+
+export default AddBlog
+
+const styles = StyleSheet.create({})

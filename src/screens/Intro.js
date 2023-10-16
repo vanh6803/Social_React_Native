@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import React, {useLayoutEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
 import {Images} from '../assets/images/index';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {Colors} from '../assets/colors/index';
